@@ -13,7 +13,7 @@ onMounted(() => {
   showRecipeData()
 })
 async function showRecipeData() {
-  const docRef = doc(db, 'addrecipe', id)
+  const docRef = doc(db, 'dataManagement', id)
   const docSnap = await getDoc(docRef)
   try {
     if (docSnap.exists()) {
@@ -50,7 +50,7 @@ async function showRecipeData() {
                 >
                   <v-img class="align-end text-white" height="400" :src="list.data.linkurl" cover>
                   </v-img>
-                  <v-card-title class="texttitle">{{ list.data.foodname }}</v-card-title>
+                  <v-card-title class="texttitle">{{ list.data.number_gost }}</v-card-title>
                   <div class="textsubdetial">
                     <v-card-subtitle class="textsub me-1">
                       <v-icon> mdi-account </v-icon>
@@ -70,7 +70,7 @@ async function showRecipeData() {
                         <tbody>
                           <tr>
                             <td class="text-left">
-                              {{ list.data.ingredient1 }} <br />
+                              {{ list.data.number_gost }} <br />
                               {{ list.data.ingredient2 }} <br />
                               {{ list.data.ingredient3 }} <br />
                               {{ list.data.ingredient4 }} <br />

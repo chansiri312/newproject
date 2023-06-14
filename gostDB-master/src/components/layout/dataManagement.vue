@@ -16,15 +16,16 @@ const rules = ref({
 
 const allRecipe = ref([])
 const recipe = ref({
-  ingredient1: '',
-  ingredient2: '',
-  ingredient3: '',
-  ingredient4: '',
-  ingredient5: '',
-  ingredient6: '',
-  ingredient7: '',
-  ingredient8: '',
-  ingredient9: ''
+  number_gost: '',
+  gender: '',
+  goat_breed: '',
+  birthday: '',
+  weigth: '',
+  number_dad: '',
+  number_mom: '',
+  date_milk: '',
+  weigth_milk: '',
+  note: ''
 })
 function showMyData() {
   if (user !== null) {
@@ -43,6 +44,7 @@ function showMyData() {
     })
   }
 }
+
 //แสดงข้อมูลจาก firebase
 onMounted(() => {
   showMyData()
@@ -62,6 +64,7 @@ if (user !== null) {
   })
 }
 //********************************************
+
 async function addData() {
   try {
     const docRef = await addDoc(collection(db, 'adddataManagement'), recipe.value)
@@ -77,13 +80,12 @@ function editRecipe() {
 }
 const dialog = ref(false)
 </script>
-
+ <!--******************************** Main Start ********************************-->
 <template>
   <v-card class="body">
     <v-layout>
       <AppBar />
       <Navigation />
-      <!--******************************** Main Start ********************************-->
       <v-main>
         <div class="Table">
           <v-card
@@ -108,21 +110,16 @@ const dialog = ref(false)
             <v-table>
               <thead class="head">
                 <tr>
-                  <th class="text-center">รูปภาพ</th>
                   <th class="text-center">รายการ</th>
-                  <th></th>
                 </tr>
               </thead>
-              <!-- <tbody>
-                <tr v-for="(recipelist, index) in allRecipe" :key="index">
+              <tbody>
+                <tr v-for="(recipe, index) in allRecipe" :key="index">
                   <td class="text-center">
-                    <img :src="recipelist.data.ingredient1" alt="" width="200" height="110" />
-                  </td>
-                  <td>
-                    <p class="text-left">{{ recipelist.data.ingredient2 }}</p>
+                    <p>{{ recipe.data.number_gost }}</p>
                   </td>
                 </tr>
-              </tbody> -->
+              </tbody>
             </v-table>
 
             <v-container>
@@ -148,14 +145,14 @@ const dialog = ref(false)
                                 label="กรอกหมายเลขแพะนม"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient1"
+                                v-model="recipe.number_gost"
                                 :rules="[rules.required]"
                               ></v-text-field>
                             </v-col>
 
                             <v-col>
                               <v-select
-                              v-model="recipe.ingredient2"
+                                v-model="recipe.gender"
                                 label="เพศ"
                                 variant="outlined"
                                 :items="['เพศผู้', 'เพศเมีย']"
@@ -169,7 +166,7 @@ const dialog = ref(false)
                                 label="กรอกชื่อพันธุ์แพะนม"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient3"
+                                v-model="recipe.goat_breed"
                                 :rules="[rules.required]"
                               ></v-text-field>
                             </v-col>
@@ -178,7 +175,7 @@ const dialog = ref(false)
                                 label="กรอกวัน/เดือน/ปี(เกิด)"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient4"
+                                v-model="recipe.birthday"
                                 :rules="[rules.required]"
                               ></v-text-field> </v-col
                           ></v-row>
@@ -188,7 +185,7 @@ const dialog = ref(false)
                                 label="กรอกน้ำหนักแรกเกิด(Kg)"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient5"
+                                v-model="recipe.weigth"
                                 :rules="[rules.required]"
                               ></v-text-field>
                             </v-col>
@@ -197,7 +194,7 @@ const dialog = ref(false)
                                 label="กรอกหมายเลขพ่อ/ชื่อ"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient6"
+                                v-model="recipe.number_dad"
                                 :rules="[rules.required]"
                               ></v-text-field>
                             </v-col>
@@ -206,7 +203,7 @@ const dialog = ref(false)
                                 label="กรอกหมายเลขแม่/ชื่อ"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient7"
+                                v-model="recipe.number_mom"
                                 :rules="[rules.required]"
                               ></v-text-field>
                             </v-col>
@@ -217,7 +214,7 @@ const dialog = ref(false)
                                 label="กรอกวัน/เดือน/ปี(หย่านม)"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient8"
+                                v-model="recipe.date_milk"
                                 :rules="[rules.required]"
                               ></v-text-field>
                             </v-col>
@@ -226,7 +223,7 @@ const dialog = ref(false)
                                 label="กรอกน้ำหนักหย่านม(Kg)"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient9"
+                                v-model="recipe.weigth_milk"
                                 :rules="[rules.required]"
                               ></v-text-field>
                             </v-col>
@@ -237,7 +234,7 @@ const dialog = ref(false)
                                 label="หมายเหตุ"
                                 type="text"
                                 variant="outlined"
-                                v-model="recipe.ingredient10"
+                                v-model="recipe.note"
                               ></v-text-field>
                             </v-col>
                           </v-row>
@@ -269,8 +266,6 @@ const dialog = ref(false)
     </v-layout>
   </v-card>
 </template>
-
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@100&display=swap');

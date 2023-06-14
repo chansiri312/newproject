@@ -63,8 +63,8 @@ function logout() {
           </div>
           <div>
             <v-divider class="my-3"></v-divider>
-            <v-btn class="textmanu1" rounded prepend-icon="mdi-logout" @click="logout()">
-              <p>ออกจากระบบ</p>
+            <v-btn class="textmanu1" variant="dark" rounded prepend-icon="mdi-logout" @click="logout()">
+              <h>ออกจากระบบ</h>
             </v-btn>
           </div>
         </v-card-text>

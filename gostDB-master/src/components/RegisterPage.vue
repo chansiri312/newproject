@@ -11,20 +11,6 @@ const router = useRouter()
 const password = ref('')
 //const username = ref("");
 
-const allRecipe = ref([])
-const recipe = ref({
-    regnamefram: '',
-    regframnum: '',
-    regframname: '',
-    regframnum: '',
-    regrode: '',
-    regtumbon: '',
-    regouper: '',
-    regjungwud: '',
-    reg: '',
-
-})
-
 const userId = ref({ regusername: '', regemail: '' })
 const visible = ref(false)
 const rules = ref({
@@ -54,6 +40,19 @@ function register() {
 
       router.push('/')
       alert('ระบบได้รับข้อมูลของคุณแล้ว')
+
+      const allRecipe = ref([])
+      const recipe = ref({
+        regnamefram: '',
+        regframnum: '',
+        regframname: '',
+        regframnum: '',
+        regrode: '',
+        regtumbon: '',
+        regouper: '',
+        regjungwud: '',
+        reg: ''
+      })
       // ...
     })
     .catch((error) => {
@@ -83,7 +82,7 @@ function register() {
 }
 
 function back() {
-  router.push("/")
+  router.push('/')
 }
 </script>
 
@@ -91,72 +90,128 @@ function back() {
   <div class="body py-4">
     <v-card class="card mx-auto pa-12 pb-8" elevation="20" max-width="448" rounded="lg">
       <div class="text">ชื่อฟาร์ม</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regnamefram">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regnamefram"
+      >
       </v-text-field>
 
       <div class="text">E - mail</div>
 
-      <v-text-field density="compact" placeholder="Email address" prepend-inner-icon="mdi-email-outline"
-        variant="outlined" v-model="userId.regemail" :rules="[rules.email]">
+      <v-text-field
+        density="compact"
+        placeholder="Email address"
+        prepend-inner-icon="mdi-email-outline"
+        variant="outlined"
+        v-model="userId.regemail"
+        :rules="[rules.email]"
+      >
       </v-text-field>
 
-      <div class="text">
-        Password
-      </div>
+      <div class="text">Password</div>
+
+      <v-text-field
+        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+        :type="visible ? 'text' : 'password'"
+        density="compact"
+        placeholder="Enter your password"
+        prepend-inner-icon="mdi-lock-outline"
+        variant="outlined"
+        @click:append-inner="visible = !visible"
+        @keyup.enter="register()"
+        v-model="password"
+        :rules="[rules.required, rules.length(6)]"
+      >
+      </v-text-field>
 
       <div class="text">เลขทะเบียนฟาร์ม</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regnumfram">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regnumfram"
+      >
       </v-text-field>
 
       <div class="text">ชื่อเจ้าของฟาร์ม</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regframname">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regframname"
+      >
       </v-text-field>
 
       <div class="text">ที่ตั้งฟาร์มเลขที่</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regframnum">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regframnum"
+      >
       </v-text-field>
 
       <div class="text">ถนน</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regrode">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regrode"
+      >
       </v-text-field>
 
       <div class="text">ตำบล</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regtumbon">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regtumbon"
+      >
       </v-text-field>
 
       <div class="text">อำเภอ</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regouper">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regouper"
+      >
       </v-text-field>
 
       <div class="text">จังหวัด</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.regjungwud">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.regjungwud"
+      >
       </v-text-field>
 
       <div class="text">ลักษณะการเลี้ยง</div>
-      <v-text-field density="compact" placeholder="Username" prepend-inner-icon="mdi-account" variant="outlined"
-        v-model="userId.reg">
-      </v-text-field>
-
-      <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" :type="visible ? 'text' : 'password'"
-        density="compact" placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline" variant="outlined"
-        @click:append-inner="visible = !visible" @keyup.enter="register()" v-model="password"
-        :rules="[rules.required, rules.length(6)]">
+      <v-text-field
+        density="compact"
+        placeholder="Username"
+        prepend-inner-icon="mdi-account"
+        variant="outlined"
+        v-model="userId.reg"
+      >
       </v-text-field>
 
       <v-btn block class="mb-8" color="blue" size="large" variant="tonal" @click="register()">
         Sign up
       </v-btn>
       <div class="d-flex justify-space-around align-center flex-column flex-md-row">
-        <v-btn rounded icon="mdi-arrow-left-bold" variant="outlined" @click="back()">
-        </v-btn>
+        <v-btn rounded icon="mdi-arrow-left-bold" variant="outlined" @click="back()"> </v-btn>
       </div>
     </v-card>
   </div>

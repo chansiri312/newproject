@@ -108,30 +108,42 @@ async function updateRecipe() {
       <!--************************************ Main Start *****************************************-->
       <v-main>
         <div class="Table">
-          <v-card class="mx-auto px-10 py-10" color="#DCEDC8" elevation="10" max-width="1000" min-height="649"
-            max-height="auto">
+          <v-card
+            class="mx-auto px-10 py-10"
+            color="#DCEDC8"
+            elevation="10"
+            max-width="1000"
+            min-height="649"
+            max-height="auto"
+          >
             <v-table>
               <thead class="head">
                 <tr>
-                  <th class="text-center">รูปภาพ</th>
                   <th class="text-center">รายการ</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(recipelist, index) in allRecipe" :key="index">
-                  <td class="text-center">
-                    <img :src="recipelist.data.linkurl" alt="" width="200" height="110" />
-                  </td>
+                <tr v-for="(recipelist, index) in allRecipe" :key="index"> 
                   <td>
-                    <p class="text-left">{{ recipelist.data.foodname }}</p>
+                    <p class="text-left">{{ recipelist.data.number_gost }}</p>
                   </td>
                   <td>
                     <div>
                       <v-btn icon class="btnedit" variant="text" @click="editRecipe(recipelist)">
-                        <Icon icon="material-symbols:edit-square-outline" color="blue" width="35" height="35" />
+                        <Icon
+                          icon="material-symbols:edit-square-outline"
+                          color="blue"
+                          width="35"
+                          height="35"
+                        />
                       </v-btn>
-                      <v-btn icon class="btndelete" variant="text" @click="deleteMenu(recipelist.id, index)">
+                      <v-btn
+                        icon
+                        class="btndelete"
+                        variant="text"
+                        @click="deleteMenu(recipelist.id, index)"
+                      >
                         <Icon icon="ic:outline-delete-outline" color="red" width="40" height="40" />
                       </v-btn>
                     </div>
@@ -150,38 +162,64 @@ async function updateRecipe() {
                         <div v-if="recipe.status == 'ส่วนตัว'">
                           <v-row>
                             <v-col>
-                              <v-text-field prepend-icon="mdi-account" readonly variant="plain"
-                                v-model="recipe.useremail"></v-text-field>
+                              <v-text-field
+                                prepend-icon="mdi-account"
+                                readonly
+                                variant="plain"
+                                v-model="recipe.useremail"
+                              ></v-text-field>
                             </v-col>
                             <v-col>
-                              <v-select prepend-icon="mdi-incognito" label="สถานะแชร์" :items="['ส่วนตัว', 'สาธารณะ']"
-                                variant="outlined" v-model="recipe.status"></v-select>
+                              <v-select
+                                prepend-icon="mdi-incognito"
+                                label="สถานะแชร์"
+                                :items="['ส่วนตัว', 'สาธารณะ']"
+                                variant="outlined"
+                                v-model="recipe.status"
+                              ></v-select>
                             </v-col>
                           </v-row>
                         </div>
                         <div v-else>
                           <v-row>
                             <v-col>
-                              <v-text-field prepend-icon="mdi-account" readonly variant="plain"
-                                v-model="recipe.useremail"></v-text-field>
+                              <v-text-field
+                                prepend-icon="mdi-account"
+                                readonly
+                                variant="plain"
+                                v-model="recipe.useremail"
+                              ></v-text-field>
                             </v-col>
                             <v-col>
-                              <v-select prepend-icon="mdi-publish" label="สถานะแชร์" :items="['ส่วนตัว', 'สาธารณะ']"
-                                variant="outlined" v-model="recipe.status"></v-select>
+                              <v-select
+                                prepend-icon="mdi-publish"
+                                label="สถานะแชร์"
+                                :items="['ส่วนตัว', 'สาธารณะ']"
+                                variant="outlined"
+                                v-model="recipe.status"
+                              ></v-select>
                             </v-col>
                           </v-row>
                         </div>
                         <div v-if="recipe.category == 'อื่นๆ'">
-                          <v-row><v-col>
-                              <v-select prepend-icon="mdi-select" label="กรุณาเลือกเพศ" :items="[
-                                'เพศผู้',
-                                'เพศเมีย',
-                                'อื่นๆ'
-                              ]" variant="outlined" v-model="recipe.category"></v-select>
+                          <v-row
+                            ><v-col>
+                              <v-select
+                                prepend-icon="mdi-select"
+                                label="กรุณาเลือกเพศ"
+                                :items="['เพศผู้', 'เพศเมีย', 'อื่นๆ']"
+                                variant="outlined"
+                                v-model="recipe.category"
+                              ></v-select>
                             </v-col>
                             <v-col>
-                              <v-text-field prepend-icon="mdi-pencil" label="รายละเอียดแพะนม" type="text"
-                                variant="outlined" v-model="recipe.categoryother">
+                              <v-text-field
+                                prepend-icon="mdi-pencil"
+                                label="รายละเอียดแพะนม"
+                                type="text"
+                                variant="outlined"
+                                v-model="recipe.categoryother"
+                              >
                               </v-text-field>
                             </v-col>
                           </v-row>
@@ -189,138 +227,27 @@ async function updateRecipe() {
                         <div v-else>
                           <v-row>
                             <v-col>
-                              <v-select prepend-icon="mdi-select" label="กรุณาเลือกเพศ" :items="[
-                                'เพศผู้',
-                                'เพศเมีย',
-                                'อื่นๆ'
-                              ]" variant="outlined" v-model="recipe.category"></v-select>
+                              <v-select
+                                prepend-icon="mdi-select"
+                                label="กรุณาเลือกเพศ"
+                                :items="['เพศผู้', 'เพศเมีย', 'อื่นๆ']"
+                                variant="outlined"
+                                v-model="recipe.category"
+                              ></v-select>
                             </v-col>
                             <v-col>
-                              <v-text-field prepend-icon="mdi-lock" readonly label="รายละเอียดแพะนม" type="text"
-                                variant="plain" v-model="recipe.categoryother">
+                              <v-text-field
+                                prepend-icon="mdi-lock"
+                                readonly
+                                label="รายละเอียดแพะนม"
+                                type="text"
+                                variant="plain"
+                                v-model="recipe.categoryother"
+                              >
                               </v-text-field>
                             </v-col>
                           </v-row>
                         </div>
-                        <v-row>
-                          <v-col>
-                            <v-text-field prepend-icon="mdi-link" label="Url รูปภาพ" type="url" variant="outlined"
-                              v-model="recipe.linkurl"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field prepend-icon="mdi-food" label="ชื่ออาหาร" type="text" variant="outlined"
-                              v-model="recipe.foodname"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-textarea label="วิธีทำ" variant="outlined" auto-grow rows="1" row-height="15"
-                              v-model="recipe.instructions"></v-textarea>
-                          </v-col>
-                        </v-row>
-                        <v-col class="text-center" style="margin-bottom: 1rem">
-                          <h3>วัตถุดิบ</h3>
-                        </v-col>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="1." type="text" variant="outlined"
-                              v-model="recipe.ingredient1"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure1"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="2." type="text" variant="outlined"
-                              v-model="recipe.ingredient2"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure2"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="3." type="text" variant="outlined"
-                              v-model="recipe.ingredient3"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure3"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="4." type="text" variant="outlined"
-                              v-model="recipe.ingredient4"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure4"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="5." type="text" variant="outlined"
-                              v-model="recipe.ingredient5"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure5"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="6." type="text" variant="outlined"
-                              v-model="recipe.ingredient6"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure6"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="7." type="text" variant="outlined"
-                              v-model="recipe.ingredient7"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure7"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="8." type="text" variant="outlined"
-                              v-model="recipe.ingredient8"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure8"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="9." type="text" variant="outlined"
-                              v-model="recipe.ingredient9"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure9"></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="10." type="text" variant="outlined"
-                              v-model="recipe.ingredient10"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="ปริมาณ" type="text" variant="outlined"
-                              v-model="recipe.measure10"></v-text-field>
-                          </v-col>
-                        </v-row>
                       </v-form>
                     </div>
                     <v-row justify="center" style="margin-bottom: 2rem">
